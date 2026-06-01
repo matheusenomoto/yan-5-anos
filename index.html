@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ 5 Anos do Yan — Convite Mágico</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #D4AF37;
+  --gold2: #F5D76E;
+  --dark: #0a0a0f;
+  --parchment: #F2E8C9;
+  --ink: #1a0f00;
+  --red: #740001;
+  --scarlet: #AE0001;
+  --purple: #2E1760;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #05050a;
+  min-height: 100vh;
+  font-family: 'Cinzel', serif;
+  overflow-x: hidden;
+}
+
+/* ── NIGHT SKY ── */
+#sky {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, #1a0533 0%, #05050a 70%);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity:0.2; transform:scale(1); }
+  50% { opacity:1; transform:scale(1.4); }
+}
+
+/* ── HEDWIG ── */
+#hedwig {
+  position: fixed;
+  top: 8%;
+  left: -120px;
+  width: 80px;
+  height: 80px;
+  z-index: 9999;
+  filter: drop-shadow(0 0 16px rgba(255,255,255,0.9)) drop-shadow(0 0 30px rgba(200,200,255,0.5));
+  animation: hedwig-fly 18s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hedwig-fly {
+  0%   { left: -120px; top: 8%; transform: scaleX(1) rotate(-5deg); }
+  20%  { top: 14%; transform: scaleX(1) rotate(3deg); }
+  40%  { top: 6%; transform: scaleX(1) rotate(-4deg); }
+  49%  { left: calc(100vw + 120px); top: 10%; transform: scaleX(1) rotate(-3deg); }
+  50%  { left: calc(100vw + 120px); transform: scaleX(-1); }
+  70%  { top: 16%; transform: scaleX(-1) rotate(3deg); }
+  90%  { top: 7%;  transform: scaleX(-1) rotate(-3deg); }
+  100% { left: -120px; top: 8%; transform: scaleX(-1) rotate(-5deg); }
+}
+
+/* ── GOLDEN SNITCH ── */
+#snitch {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  animation: snitch-move 12s ease-in-out infinite;
+  top: 60%;
+  left: 10%;
+}
+
+.snitch-body {
+  width: 38px;
+  height: 38px;
+  background: radial-gradient(circle at 35% 35%, #FFF9C4, #F5D76E, #D4AF37, #8B6914);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(212,175,55,1), 0 0 50px rgba(212,175,55,0.6), 0 0 80px rgba(212,175,55,0.2);
+  position: relative;
+}
+
+.snitch-wing {
+  position: absolute;
+  width: 44px;
+  height: 18px;
+  background: rgba(245,215,110,0.35);
+  border: 2px solid rgba(212,175,55,0.8);
+  border-radius: 50%;
+  top: 50%;
+}
+
+.snitch-wing.left  { right: calc(100% - 4px); transform-origin: right center; transform: translateY(-50%); animation: wing-left 0.12s ease-in-out infinite alternate; }
+.snitch-wing.right { left:  calc(100% - 4px); transform-origin: left center;  transform: translateY(-50%); animation: wing-right 0.12s ease-in-out infinite alternate; }
+
+@keyframes wing-left  { from { transform: translateY(-50%) scaleY(1); } to { transform: translateY(-50%) scaleY(0.2); } }
+@keyframes wing-right { from { transform: translateY(-50%) scaleY(1); } to { transform: translateY(-50%) scaleY(0.2); } }
+
+@keyframes snitch-move {
+  0%   { top: 60%; left: 10%; }
+  15%  { top: 30%; left: 75%; }
+  30%  { top: 70%; left: 55%; }
+  45%  { top: 20%; left: 20%; }
+  60%  { top: 55%; left: 85%; }
+  75%  { top: 40%; left: 40%; }
+  90%  { top: 25%; left: 65%; }
+  100% { top: 60%; left: 10%; }
+}
+
+/* ── WAND SPARKS ── */
+.spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 4;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: spark-fade 1.5s ease-out forwards;
+}
+
+@keyframes spark-fade {
+  0%   { opacity:1; transform:translate(0,0) scale(1); }
+  100% { opacity:0; transform:translate(var(--dx), var(--dy)) scale(0); }
+}
+
+/* ── MAIN CONTENT ── */
+.page {
+  position: relative;
+  z-index: 10;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 16px 60px;
+}
+
+/* ── SCAR HEADER ── */
+.scar-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.scar-svg {
+  filter: drop-shadow(0 0 18px rgba(212,175,55,0.9)) drop-shadow(0 0 40px rgba(212,175,55,0.4));
+  animation: scar-pulse 3s ease-in-out infinite;
+}
+
+@keyframes scar-pulse {
+  0%,100% { filter: drop-shadow(0 0 18px rgba(212,175,55,0.9)) drop-shadow(0 0 40px rgba(212,175,55,0.4)); }
+  50%      { filter: drop-shadow(0 0 28px rgba(255,220,80,1))   drop-shadow(0 0 60px rgba(212,175,55,0.7)); }
+}
+
+/* ── PARCHMENT CARD ── */
+.card {
+  background: linear-gradient(170deg, #F7EDD2 0%, #EFE0B0 40%, #E8D49A 100%);
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 3px var(--gold),
+    0 0 0 8px rgba(212,175,55,0.15),
+    0 30px 80px rgba(0,0,0,0.9),
+    0 0 60px rgba(212,175,55,0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Parchment lines */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    transparent, transparent 31px,
+    rgba(139,96,20,0.12) 31px, rgba(139,96,20,0.12) 32px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Corner ornaments */
+.card::after {
+  content: '✦';
+  position: absolute;
+  top: 10px; right: 14px;
+  color: var(--gold);
+  font-size: 1.2rem;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* ── CARD HEADER ── */
+.card-top {
+  background: linear-gradient(160deg, #1a0533 0%, var(--purple) 50%, #0a0015 100%);
+  padding: 28px 24px 22px;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-top::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.2) 0%, transparent 65%);
+}
+
+.card-top .eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 5px;
+  color: rgba(212,175,55,0.6);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.card-top h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  font-weight: 900;
+  color: var(--gold2);
+  text-shadow: 0 0 30px rgba(212,175,55,0.8), 2px 2px 0 rgba(0,0,0,0.5);
+  line-height: 1.2;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.card-top .tagline {
+  font-family: 'Cinzel', serif;
+  font-style: italic;
+  color: rgba(212,175,55,0.7);
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+/* ── DEADLINE STRIP ── */
+.deadline {
+  background: linear-gradient(90deg, #1A472A 0%, #2d6a44 50%, #1A472A 100%);
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  padding: 9px 16px;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--gold2);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── INFO SECTION ── */
+.info-section {
+  padding: 22px 26px;
+  border-bottom: 1px dashed rgba(139,96,20,0.35);
+  position: relative;
+  z-index: 1;
+}
+
+.rune-divider {
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 8px;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.info-icon-wrap {
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle, rgba(212,175,55,0.2), transparent);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.info-text-wrap { line-height: 1.45; }
+
+.info-label {
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--scarlet);
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+
+.info-val {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.info-val em {
+  font-style: italic;
+  color: #666;
+  font-size: 0.82rem;
+}
+
+/* ── FORM SECTION ── */
+.form-section {
+  padding: 22px 26px 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.form-intro {
+  font-family: 'Cinzel', serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #5a3e20;
+  text-align: center;
+  line-height: 1.7;
+  margin-bottom: 22px;
+  opacity: 0.85;
+}
+
+.wand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 17px 20px;
+  background: linear-gradient(135deg, var(--scarlet) 0%, #5C0000 100%);
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  color: var(--gold2);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 4px 24px rgba(116,0,1,0.5), inset 0 1px 0 rgba(245,215,110,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.wand-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(245,215,110,0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.wand-btn:hover::before { transform: translateX(100%); }
+
+.wand-btn:hover {
+  box-shadow: 0 6px 32px rgba(116,0,1,0.6), 0 0 24px rgba(212,175,55,0.35);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.wand-icon { font-size: 1.4rem; }
+
+/* ── CLOSED ── */
+.closed-section {
+  display: none;
+  padding: 40px 26px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.closed-section.visible { display: block; }
+.closed-section h3 {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--scarlet);
+  font-size: 1.2rem;
+  margin: 16px 0 10px;
+}
+.closed-section p {
+  font-family: 'Cinzel', serif;
+  font-style: italic;
+  color: #5a3e20;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+/* ── CARD FOOTER ── */
+.card-footer {
+  background: linear-gradient(160deg, #0a0015 0%, var(--purple) 50%, #1a0533 100%);
+  border-top: 3px solid var(--gold);
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.card-footer p {
+  font-family: 'Cinzel', serif;
+  font-style: italic;
+  color: rgba(212,175,55,0.7);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.houses {
+  font-size: 1.5rem;
+  letter-spacing: 10px;
+  margin-top: 8px;
+}
+
+.page-credit {
+  text-align: center;
+  color: rgba(255,255,255,0.15);
+  font-size: 0.7rem;
+  margin-top: 20px;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+
+<!-- Night sky -->
+<div id="sky"></div>
+
+<!-- Hedwig -->
+<div id="hedwig">
+  <svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+    <!-- Body -->
+    <ellipse cx="35" cy="42" rx="18" ry="22" fill="white" opacity="0.95"/>
+    <!-- Wing left -->
+    <ellipse cx="17" cy="45" rx="10" ry="16" fill="white" opacity="0.85" transform="rotate(-15 17 45)"/>
+    <!-- Wing right -->
+    <ellipse cx="53" cy="45" rx="10" ry="16" fill="white" opacity="0.85" transform="rotate(15 53 45)"/>
+    <!-- Head -->
+    <ellipse cx="35" cy="22" rx="14" ry="13" fill="white" opacity="0.97"/>
+    <!-- Ear tufts -->
+    <polygon points="26,12 22,4 29,10" fill="white"/>
+    <polygon points="44,12 48,4 41,10" fill="white"/>
+    <!-- Face disc -->
+    <ellipse cx="35" cy="24" rx="10" ry="9" fill="#f0f0f0" opacity="0.6"/>
+    <!-- Eyes -->
+    <circle cx="29" cy="22" r="4.5" fill="#1a0a00"/>
+    <circle cx="41" cy="22" r="4.5" fill="#1a0a00"/>
+    <circle cx="30" cy="21" r="1.5" fill="white"/>
+    <circle cx="42" cy="21" r="1.5" fill="white"/>
+    <!-- Beak -->
+    <polygon points="35,26 32,30 38,30" fill="#D4AF37"/>
+    <!-- Chest markings -->
+    <ellipse cx="35" cy="47" rx="8" ry="10" fill="#e8e8e8" opacity="0.5"/>
+    <!-- Talons -->
+    <line x1="28" y1="63" x2="24" y2="68" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+    <line x1="30" y1="63" x2="28" y2="69" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+    <line x1="32" y1="63" x2="32" y2="69" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+    <line x1="42" y1="63" x2="46" y2="68" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+    <line x1="40" y1="63" x2="42" y2="69" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+    <line x1="38" y1="63" x2="38" y2="69" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- Golden Snitch -->
+<div id="snitch">
+  <div class="snitch-body">
+    <div class="snitch-wing left"></div>
+    <div class="snitch-wing right"></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- Lightning Scar -->
+  <div class="scar-header">
+    <svg class="scar-svg" width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Lightning bolt scar shape -->
+      <polyline points="60,5 42,38 58,38 40,75" stroke="#D4AF37" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <polyline points="60,5 42,38 58,38 40,75" stroke="#FFF176" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <div class="card">
+
+    <!-- Top -->
+    <div class="card-top">
+      <div class="eyebrow">⚡ &nbsp; Convite Oficial &nbsp; ⚡</div>
+      <h1>5 Anos do Yan!</h1>
+      <div class="tagline">Uma festa digna de Hogwarts</div>
+    </div>
+
+    <!-- Deadline -->
+    <div class="deadline" id="deadlineBanner">
+      🌿 &nbsp; Confirme até 12 de junho de 2026 &nbsp; 🌿
+    </div>
+
+    <!-- Event info -->
+    <div class="info-section">
+      <div class="rune-divider">✦ ᛖ ✦ ᚹ ✦ ᛁ ✦</div>
+
+      <div class="info-row">
+        <div class="info-icon-wrap">📅</div>
+        <div class="info-text-wrap">
+          <div class="info-label">Data</div>
+          <div class="info-val">20 de Junho de 2026 — Sábado</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon-wrap">🕯️</div>
+        <div class="info-text-wrap">
+          <div class="info-label">Horário</div>
+          <div class="info-val">A partir das 14h</div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon-wrap">📍</div>
+        <div class="info-text-wrap">
+          <div class="info-label">Local</div>
+          <div class="info-val">
+            R. Mal. José B. Bormann, 1508<br>
+            Bigorrilho — Curitiba, PR
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Form -->
+    <div class="form-section" id="formSection">
+      <p class="form-intro">
+        Prezado bruxo ou bruxa — clique abaixo para confirmar sua presença.<br>
+        O jovem Yan e Hedwig aguardam sua resposta! 🦉
+      </p>
+      <a class="wand-btn" href="https://forms.gle/znSsyf9vcCba1uSz7" target="_blank" id="formsBtn">
+        <span class="wand-icon">🪄</span>
+        Confirmar Presença
+        <span class="wand-icon">⚡</span>
+      </a>
+    </div>
+
+    <!-- Closed -->
+    <div class="closed-section" id="closedSection">
+      <div style="font-size:3rem">🔮</div>
+      <h3>Feitiço Encerrado</h3>
+      <p>O prazo para confirmação encerrou em 12 de junho de 2026.<br><br>
+      Que a magia esteja com você! ⚡</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <p>Com amor, a família do Yan 🦉</p>
+      <div class="houses">🦁 🦅 🦡 🐍</div>
+    </div>
+
+  </div>
+
+  <div class="page-credit">⚡ 5 Anos do Yan — 20 de Junho de 2026 ⚡</div>
+</div>
+
+<script>
+// ── Stars ──
+const sky = document.getElementById('sky');
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `
+    left:${Math.random()*100}%;top:${Math.random()*100}%;
+    width:${sz}px;height:${sz}px;
+    animation-duration:${(Math.random()*3+1.5).toFixed(1)}s;
+    animation-delay:${(Math.random()*4).toFixed(1)}s;
+    opacity:${(Math.random()*0.5+0.1).toFixed(2)};
+  `;
+  sky.appendChild(s);
+}
+
+// ── Wand sparks on button hover ──
+const btn = document.getElementById('formsBtn');
+if (btn) {
+  btn.addEventListener('mousemove', (e) => {
+    if (Math.random() > 0.5) return;
+    const sp = document.createElement('div');
+    sp.className = 'spark';
+    const colors = ['#D4AF37','#F5D76E','#FFF9C4','#AE0001','#ffffff'];
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 30 + Math.random() * 50;
+    sp.style.cssText = `
+      left:${e.clientX}px;top:${e.clientY}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      --dx:${(Math.cos(angle)*dist).toFixed(0)}px;
+      --dy:${(Math.sin(angle)*dist).toFixed(0)}px;
+    `;
+    document.body.appendChild(sp);
+    setTimeout(() => sp.remove(), 1500);
+  });
+}
+
+// ── Deadline check ──
+const DEADLINE = new Date('2026-06-12T23:59:59-03:00');
+if (new Date() > DEADLINE) {
+  document.getElementById('formSection').style.display = 'none';
+  document.getElementById('closedSection').classList.add('visible');
+  const b = document.getElementById('deadlineBanner');
+  b.style.background = 'linear-gradient(90deg,#222,#333,#222)';
+  b.innerHTML = '🔒 Prazo encerrado em 12 de junho de 2026';
+}
+</script>
+</body>
+</html>
